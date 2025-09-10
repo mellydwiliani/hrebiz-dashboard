@@ -50,7 +50,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <div className="md:hidden fixed bottom-0 left-0 w-full bg-pink-600 border-t border-pink-700 z-50">
+      <div className="md:hidden fixed bottom-0 left-0 w-full mb-2 bg-[#ff6ebc] border-t border-[#ff6ebc] z-50">
         <div className="flex justify-around py-3 text-white text-sm">
           <Link href="#" className="flex flex-col items-center">
             <FontAwesomeIcon icon={faHouse} className="h-5 w-5 mb-1" />
