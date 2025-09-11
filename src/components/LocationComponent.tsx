@@ -26,8 +26,23 @@ export default function LocationComponent() {
       },
       (err) => {
         console.error("Error getting location:", err)
-        setError("Failed to get location. Please allow location access.")
+
+        if (err.code === err.PERMISSION_DENIED) {
+          setError("Location permission denied. Please enable location access in your browser or system settings.")
+        } else if (err.code === err.POSITION_UNAVAILABLE) {
+          setError("Location information is unavailable.")
+        } else if (err.code === err.TIMEOUT) {
+          setError("The request to get your location timed out.")
+        } else {
+          setError("Failed to get location. Please allow location access.")
+        }
+
         setLoading(false)
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000, // 10 detik
+        maximumAge: 0,
       }
     )
   }
