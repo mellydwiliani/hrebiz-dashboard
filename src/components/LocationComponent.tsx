@@ -1,11 +1,21 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function LocationComponent() {
   const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [permission, setPermission] = useState<string>("unknown")
+
+  useEffect(() => {
+    if ("permissions" in navigator) {
+      ;(navigator as any).permissions.query({ name: "geolocation" }).then((res: any) => {
+        setPermission(res.state)
+        res.onchange = () => setPermission(res.state)
+      })
+    }
+  }, [])
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -41,7 +51,7 @@ export default function LocationComponent() {
       },
       {
         enableHighAccuracy: true,
-        timeout: 10000, // 10 detik
+        timeout: 10000,
         maximumAge: 0,
       }
     )
@@ -63,6 +73,7 @@ export default function LocationComponent() {
           Lat: {position.lat}, Lng: {position.lng}
         </p>
       )}
+      <p className="text-sm text-gray-500">Permission: {permission}</p>
     </div>
   )
 }
