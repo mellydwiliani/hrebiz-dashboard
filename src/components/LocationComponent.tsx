@@ -2,12 +2,36 @@
 
 import { useState } from "react"
 
+type Position = {
+  lat: number
+  lng: number
+}
+
 export default function LocationComponent() {
-  const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null)
+  const [position, setPosition] = useState<Position | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [permission, setPermission] = useState<string | null>(null)
 
-  const getLocation = () => {
+  // Cek permission dengan tipe aman
+  const checkPermission = async () => {
+    if ("permissions" in navigator) {
+      try {
+        const res = await (navigator as unknown as {
+          permissions: {
+            query: (p: { name: "geolocation" }) => Promise<PermissionStatus>
+          }
+        }).permissions.query({ name: "geolocation" })
+        setPermission(res.state) // granted | denied | prompt
+      } catch {
+        setPermission("Permission API not supported")
+      }
+    }
+  }
+
+  const getLocation = async () => {
+    await checkPermission()
+
     if (!navigator.geolocation) {
       setError("Geolocation is not supported by your browser")
       return
@@ -24,26 +48,19 @@ export default function LocationComponent() {
         })
         setLoading(false)
       },
-      (err) => {
-        console.error("Error getting location:", err)
-
-        if (err.code === err.PERMISSION_DENIED) {
-          setError("Location permission denied. Please enable location access in your browser or system settings.")
-        } else if (err.code === err.POSITION_UNAVAILABLE) {
+      (error) => {
+        if (error.code === error.PERMISSION_DENIED) {
+          setError("Location permission denied. Please enable location access.")
+        } else if (error.code === error.POSITION_UNAVAILABLE) {
           setError("Location information is unavailable.")
-        } else if (err.code === err.TIMEOUT) {
-          setError("The request to get your location timed out.")
+        } else if (error.code === error.TIMEOUT) {
+          setError("The request timed out.")
         } else {
-          setError("Failed to get location. Please allow location access.")
+          setError("Failed to get location.")
         }
-
         setLoading(false)
       },
-      {
-        enableHighAccuracy: true,
-        timeout: 10000, // 10 detik
-        maximumAge: 0,
-      }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     )
   }
 
@@ -56,6 +73,7 @@ export default function LocationComponent() {
         Get Location
       </button>
 
+      {permission && <p className="text-gray-500">Permission status: {permission}</p>}
       {loading && <p>Fetching location...</p>}
       {error && <p className="text-red-500">{error}</p>}
       {position && (
