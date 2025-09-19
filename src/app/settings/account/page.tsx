@@ -1,79 +1,61 @@
 "use client"
 
-import { useState } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card } from "@/components/ui/card"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowLeft, faPen, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
-import Link from "next/link"
+import {
+  faUser,
+  faPen,
+  faEnvelope,
+  faLock,
+} from "@fortawesome/free-solid-svg-icons"
 
-export default function AccountSettingsPage() {
-  const [showPassword, setShowPassword] = useState(false)
-
+export default function AccountSettings() {
   return (
-    <div className="max-w-md mx-auto px-4 py-6">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
+    <div className="max-w-md mx-auto px-4 py-6 pb-24">
+      {/* Back Button and Header */}
+      <div className="flex items-center mb-6">
         <Link href="/settings">
-          <Button variant="ghost" size="icon">
-            <FontAwesomeIcon icon={faArrowLeft} className="text-gray-700" />
-          </Button>
+          <FontAwesomeIcon icon={faUser} className="text-[#4F709C] text-xl mr-4" />
         </Link>
-        <h1 className="text-lg font-semibold">Akun Saya</h1>
+        <h1 className="text-xl font-semibold">Akun Saya</h1>
       </div>
 
-      {/* Profile */}
-      <div className="flex flex-col items-center mb-6">
-        <div className="relative">
-          <div className="w-28 h-28 rounded-full bg-blue-100 flex items-center justify-center">
-            <div className="w-16 h-16 rounded-full bg-blue-200" />
+      {/* Profile Info */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center relative">
+          <FontAwesomeIcon icon={faUser} className="text-[#4F709C] text-2xl" />
+          <Button variant="ghost" size="icon" className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-white border border-gray-300">
+            <FontAwesomeIcon icon={faPen} className="text-[#4F709C] text-sm" />
+          </Button>
+        </div>
+        <div>
+          <p className="font-medium text-lg">Rossie</p>
+          <p className="text-base text-gray-500">@rossie.ebizmark.id</p>
+        </div>
+      </div>
+
+      {/* Account Form */}
+      <div className="space-y-4">
+        <h2 className="text-lg font-semibold">Akun Saya</h2>
+        <div className="space-y-2">
+          <label className="text-sm text-gray-500">Nama Pengguna</label>
+          <Input type="text" defaultValue="Rossie" className="w-full" />
+        </div>
+        <div className="space-y-2">
+          <label className="text-sm text-gray-500">Email</label>
+          <Input type="email" defaultValue="rossie.ebizmark.id" className="w-full" />
+        </div>
+        <div className="space-y-2">
+          <label className="text-sm text-gray-500">Kata Sandi</label>
+          <div className="relative">
+            <Input type="password" defaultValue="********" className="w-full pr-10" />
+            <FontAwesomeIcon icon={faLock} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
-          <button className="absolute bottom-2 right-2 bg-blue-500 rounded-full p-2 shadow-md">
-            <FontAwesomeIcon icon={faPen} className="text-white text-sm" />
-          </button>
         </div>
-        <p className="mt-4 font-semibold text-lg">Rossie</p>
-        <p className="text-sm text-gray-500">@rossie.ebizmark.id</p>
+        <Button className="w-full bg-[#1E3A8A] text-white hover:bg-[#163172] mt-4">Simpan</Button>
       </div>
-
-      {/* Form */}
-      <Card className="p-4 space-y-4">
-        {/* Nama Pengguna */}
-        <div className="space-y-1">
-          <Label htmlFor="username">Nama Pengguna</Label>
-          <Input id="username" defaultValue="Rossie" />
-        </div>
-
-        {/* Email */}
-        <div className="space-y-1">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" defaultValue="rossie.ebizmark.id" />
-        </div>
-
-        {/* Kata Sandi */}
-        <div className="space-y-1 relative">
-          <Label htmlFor="password">Kata Sandi</Label>
-          <Input
-            id="password"
-            type={showPassword ? "text" : "password"}
-            defaultValue="********"
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-9 text-gray-500"
-          >
-            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-          </button>
-        </div>
-
-        {/* Button Simpan */}
-        <Button className="w-full bg-blue-900 hover:bg-blue-800 text-white">
-          Simpan
-        </Button>
-      </Card>
     </div>
   )
 }
