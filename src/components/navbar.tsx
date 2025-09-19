@@ -21,7 +21,7 @@ export default function BottomNavbar() {
   ]
 
   return (
-  <div className="fixed left-1/2 -translate-x-1/2 bg-white border-t h-16 w-[95vw] max-w-xl flex items-center justify-between px-2 py-2" style={{ bottom: 0 }}>
+  <div className="fixed left-1/2 -translate-x-1/2 bg-white border-t h-20 w-[98vw] max-w-2xl flex items-center justify-between px-2 py-2 pb-4" style={{ bottom: 0 }}>
       {menus.map((menu) => (
         <Button
           key={menu.key}
