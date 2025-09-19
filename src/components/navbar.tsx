@@ -21,16 +21,16 @@ export default function BottomNavbar() {
   ]
 
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 bg-white border-t h-20 w-[95vw] max-w-xl flex items-center justify-around px-6">
+  <div className="fixed left-1/2 -translate-x-1/2 bg-white border-t h-16 w-[95vw] max-w-xl flex items-center justify-between px-2 py-2 mb-4" style={{ bottom: 0, paddingBottom: 10 }}>
       {menus.map((menu) => (
         <Button
           key={menu.key}
           variant={active === menu.key ? "default" : "ghost"}
           onClick={() => setActive(menu.key)}
-          className={`flex items-center gap-2 rounded-full px-5 ${active === menu.key ? "py-3" : "py-2"} text-sm font-medium transition-all h-auto 
+          className={`flex items-center gap-2 rounded-full px-5 ${active === menu.key ? "py-2" : "py-1.5"} text-sm font-medium transition-all h-auto 
             ${active === menu.key ? "bg-[#303267] text-white" : "text-[#303267]"}`}
         >
-          <FontAwesomeIcon icon={menu.icon} className="text-3xl" />
+          <FontAwesomeIcon icon={menu.icon} className="text-2xl" />
           {active === menu.key && <span>{menu.label}</span>}
         </Button>
       ))}
