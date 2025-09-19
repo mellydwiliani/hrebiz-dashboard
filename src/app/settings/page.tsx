@@ -15,6 +15,7 @@ import {
   faPhone,
   faRightFromBracket,
   faPen,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons"
 
 export default function SettingsPage() {
@@ -51,7 +52,7 @@ export default function SettingsPage() {
                   <p className="text-base text-gray-500">Make changes to your account</p>
                 </div>
               </div>
-              <span className="text-gray-400 pr-4">{">"}</span>
+              <FontAwesomeIcon icon={faChevronRight} className="text-gray-400 pr-4" />
             </div>
           </Link>
           <Separator />
@@ -66,7 +67,7 @@ export default function SettingsPage() {
                   <p className="text-base text-gray-500">Make changes to your account</p>
                 </div>
               </div>
-              <span className="text-gray-400 pr-4">{">"}</span>
+              <FontAwesomeIcon icon={faChevronRight} className="text-gray-400 pr-4" />
             </div>
           </Link>
           <Separator />
@@ -81,7 +82,7 @@ export default function SettingsPage() {
                   <p className="text-base text-gray-500">Make changes to your account</p>
                 </div>
               </div>
-              <span className="text-gray-400 pr-4">{">"}</span>
+              <FontAwesomeIcon icon={faChevronRight} className="text-gray-400 pr-4" />
             </div>
           </Link>
           <Separator />
@@ -96,7 +97,7 @@ export default function SettingsPage() {
                   <p className="text-base text-gray-500">Make changes to your account</p>
                 </div>
               </div>
-              <span className="text-gray-400 pr-4">{">"}</span>
+              <FontAwesomeIcon icon={faChevronRight} className="text-gray-400 pr-4" />
             </div>
           </Link>
           <Separator />
@@ -111,7 +112,7 @@ export default function SettingsPage() {
                   <p className="text-base text-gray-500">Make changes to your account</p>
                 </div>
               </div>
-              <span className="text-gray-400 pr-4">{">"}</span>
+              <FontAwesomeIcon icon={faChevronRight} className="text-gray-400 pr-4" />
             </div>
           </Link>
           <Separator />
@@ -126,7 +127,7 @@ export default function SettingsPage() {
                   <p className="text-base text-gray-500">Make changes to your account</p>
                 </div>
               </div>
-              <span className="text-gray-400 pr-4">{">"}</span>
+              <FontAwesomeIcon icon={faChevronRight} className="text-gray-400 pr-4" />
             </div>
           </Link>
           <Separator />
@@ -141,7 +142,7 @@ export default function SettingsPage() {
                   <p className="text-base text-gray-500">Further secure your account for safety</p>
                 </div>
               </div>
-              <span className="text-gray-400 pr-4">{">"}</span>
+              <FontAwesomeIcon icon={faChevronRight} className="text-gray-400 pr-4" />
             </div>
           </Link>
           <Separator />
@@ -156,7 +157,7 @@ export default function SettingsPage() {
                   <p className="text-base text-gray-500">Further secure your account for safety</p>
                 </div>
               </div>
-              <span className="text-gray-400 pr-4">{">"}</span>
+              <FontAwesomeIcon icon={faChevronRight} className="text-gray-400 pr-4" />
             </div>
           </Link>
         </div>
